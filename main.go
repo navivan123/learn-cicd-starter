@@ -1,7 +1,7 @@
 package main
 
-// 1st block: 
-// 2nd clock: 
+// 1st block:
+// 2nd clock:
 // 3rd shock:
 // 4th _ock:
 import (

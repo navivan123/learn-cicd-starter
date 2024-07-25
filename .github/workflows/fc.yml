@@ -23,3 +23,4 @@ jobs:
       
       - name: Style job
         run: test -z $(go fmt ./...)
+        run: go fmt ./...
