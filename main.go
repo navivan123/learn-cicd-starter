@@ -1,7 +1,7 @@
 package main
 
-// 1st block:
-// 2nd clock:
+// 1st block: 
+// 2nd clock: 
 // 3rd shock:
 // 4th _ock:
 import (
@@ -28,7 +28,7 @@ type apiConfig struct {
 //go:embed static/*
 var staticFiles embed.FS
 
-func main(){
+func main() {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Printf("warning: assuming default configuration. .env unreadable: %v", err)
