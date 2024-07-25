@@ -1,15 +1,15 @@
 package auth
 
 import (
-	"testing"
-	"net/http"
 	"fmt"
+	"net/http"
+	"testing"
 )
 
-func TestBadHTTPHeader (t *testing.T) {
+func TestBadHTTPHeader(t *testing.T) {
 	//mux := http.NewServeMux()
 	//mux.Handle("/", http.FileServer(http.Dir("."))
-	
+
 	//srv := &http.Server{
 	//	Addr: ":8080",
 	//	Handler: mux
@@ -21,7 +21,7 @@ func TestBadHTTPHeader (t *testing.T) {
 	}
 
 	//t.Errorf(req.Header.Get("Authorization"))
-	
+
 	_, err2 := GetAPIKey(req.Header)
 
 	if err2 != nil {
@@ -32,7 +32,7 @@ func TestBadHTTPHeader (t *testing.T) {
 
 	req.Header.Set("Authorization", "Bearer YTIwfAKeNGYtODY4YS00MzM5LTkzNGYtNGRhMmQ3ODhkMGFhOjNuYU8xMElBMmFnY3ZHKzlJOVRHRVE9PQ==")
 	//t.Errorf(req.Header.Get("Authorization"))
-	
+
 	_, err3 := GetAPIKey(req.Header)
 
 	if err3 != nil {
@@ -42,9 +42,9 @@ func TestBadHTTPHeader (t *testing.T) {
 	}
 
 	req.Header.Set("Authorization", "ApiKey YTIwfAKeNGYtODY4YS00MzM5LTkzNGYtNGRhMmQ3ODhkMGFhOjNuYU8xMElBMmFnY3ZHKzlJOVRHRVE9PQ==")
-	
+
 	apiKey, err4 := GetAPIKey(req.Header)
-	
+
 	if err4 != nil {
 		t.Errorf("Some weird shit going on here: %s\n", err4)
 	} else {
