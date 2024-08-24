@@ -6,7 +6,9 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -18,6 +20,9 @@ jobs:
 
       - name: Build app
         run: ./scripts/buildprod.sh
+
+      - name: Migrate
+        run: ./scripts/migrateup.sh
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
@@ -31,7 +36,7 @@ jobs:
         run: 'gcloud info'
 
       - name: Submit build to Artifact Registry
-        run: 'gcloud builds submit --tag us-central1-docker.pkg.dev/notely-433505/notely-ar-repo/notely:v0.0.5 .'
+        run: 'gcloud builds submit --tag us-central1-docker.pkg.dev/notely-433505/notely-ar-repo/notely:v0.0.6 .'
 
       - name: Deploy to Cloud Run
-        run: 'gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-433505/notely-ar-repo/notely:v0.0.5 --region us-central1 --allow-unauthenticated --project notely-433505 --max-instances=4'
+        run: 'gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-433505/notely-ar-repo/notely:v0.0.6 --region us-central1 --allow-unauthenticated --project notely-433505 --max-instances=4'
